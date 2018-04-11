@@ -90,7 +90,7 @@ $app -> post('/modulo1/actualizarPacientePorId/{id}', function(Request $req, Res
     $ant_pat= $req -> getParam('ant_pat');
 
 
-    $sql = "UPDATE `nrm0t8gdg6uch1z6`.`pacientes` SET
+    $sql = "UPDATE `pacientes` SET
     `nombre` = :x0,
     `apellidos` = :x1,
     `fecha_nacimiento` = :x2 ,
@@ -100,7 +100,7 @@ $app -> post('/modulo1/actualizarPacientePorId/{id}', function(Request $req, Res
     `telefono` = :x6,
     `celular` = :x7,
     `email` = :x8 ,
-    `ocupación` = :x9 ,
+    `ocupacion` = :x9 ,
     `fecha_registro` = :x10,
     `enfs_here` = :x11,
     `ant_no_pat` = :x12,
@@ -166,7 +166,7 @@ $app ->post('/modulo1/agregarPaciente', function(Request $req, Response $res){
     $ant_pat =$req -> getParam('ant_pat');
 
 
-    $sql = "INSERT INTO `nrm0t8gdg6uch1z6`.`pacientes`
+    $sql = "INSERT INTO `pacientes`
     (`idpaciente`,
     `nombre`,
     `apellidos`,
@@ -177,7 +177,7 @@ $app ->post('/modulo1/agregarPaciente', function(Request $req, Response $res){
     `telefono`,
     `celular`,
     `email`,
-    `ocupación`,
+    `ocupacion`,
     `fecha_registro`,
     `enfs_here`,
     `ant_no_pat`,
@@ -245,6 +245,43 @@ $app ->get('/modulo1/todasLasVisitas',function(Request $req, Response $res){
         echo '{"errorr": {"text":'.$e->getMessage().'}';
     }
 });
+
+$app ->get('/modulo1/buscarPaciente',function(Request $req, Response $res){
+    $sql = 'SELECT CONCAT(`pacientes`.`idpaciente`,  " ",
+                `pacientes`.`nombre`,  " ",
+                `pacientes`.`apellidos`,  " ",
+                `pacientes`.`fecha_nacimiento`,  " ",
+                `pacientes`.`estado_civil`,  " ",
+                `pacientes`.`genero`,  " ",
+                `pacientes`.`domicilio`,  " ",
+                `pacientes`.`telefono`,  " ",
+                `pacientes`.`celular`,  " ",
+                `pacientes`.`email`,  " ",
+                `pacientes`.`ocupacion`,  " ",
+                `pacientes`.`fecha_registro`,  " ",
+                `pacientes`.`enfs_here`,  " ",
+                `pacientes`.`ant_no_pat`,  " ",
+                `pacientes`.`ant_peri`,  " ",
+                `pacientes`.`ant_gine`,  " ",
+                `pacientes`.`ant_pat`) as allInfo , idpaciente
+            FROM `pacientes`';
+
+    try {
+
+        $db = new db();
+        $db = $db ->connect();
+        $stmt = $db->query($sql);
+        $allInfo = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        return $res->withJson($allInfo);
+
+
+    } catch (PDOException $e){
+        echo '{"errorr": {"text":'.$e->getMessage().'}';
+    }
+});
+
+
 
 //selecciona por el id del paciente
 $app ->get('/modulo1/visitasPorPaciente/{id}', function(Request $req, Response $res){

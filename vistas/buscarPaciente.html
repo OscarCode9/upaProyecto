@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="bustras/css/bootstrap.css">
   <link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
   <link rel="stylesheet" href="bustras/css/estilos.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    td {
+      padding: 10px;
+
+    }
+  </style>
 </head>
 
 <body>
@@ -29,10 +36,6 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
-                      </li>
-
                   <li>
                     <a href="form_pacientes.html">Agregar nuevo paciente</a>
                   </li>
@@ -47,6 +50,7 @@
                   <li>
                     <a href="buscarPaciente.html">Buscar paciente</a>
                   </li>
+
                 </ul>
               </li>
 
@@ -111,112 +115,159 @@
       </nav>
     </header>
     <div class="container">
-      <form id="addProductForm" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Apellidos:</label>
-          <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Fecha de nacimiento:</label>
-          <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento">
-        </div>
-        <div class="form-group">
-          <label for="option">Estado civil:</label>
-          <select class="form-control" name="estado_civil" id="estado_civil">
-            <option value="Casado(a)">Casado(a)</option>
-            <option value="Soltero(a)">Soltero(a)</option>
-            <option value="Divorciado(a)">Divorciado(a)</option>
-            <option value="Viudo(a)">Viudo(a)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="option">Genero:</label>
-          <select class="form-control" name="genero" id="genero">
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Domicilio:</label>
-          <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="Domicilio">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Telefono:</label>
-          <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Celular:</label>
-          <input type="text" class="form-control" id="celular" name="celular" placeholder="cCelular">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Email:</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Ocupación:</label>
-          <input type="text" class="form-control" id="ocupacion" name="ocupacion" placeholder="Ocupacion">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Fecha de registro:</label>
-          <input type="date" class="form-control" id="fecha_registro" name="fecha_registro" placeholder="Fecha de nacimiento">
-        </div>
-        <div class="form-group">
-          <label for="nombre">Enfermedades heredas:</label>
-          <textarea name="enfs_here" id="enfs_here" cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Antecedentes no patológicos:</label>
-          <textarea name="ant_no_pat" id="ant_no_pat" cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Antecedentes perinatales:</label>
-          <textarea name="ant_peri" id="ant_peri" cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Antecedentes gineco-obstétricos (sólo para mujeres):</label>
-          <textarea name="ant_gine" id="ant_gine" cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Antecedentes patológicos:</label>
-          <textarea name="ant_pat" id="ant_pat" cols="30" rows="10"></textarea>
-        </div>
+      <input type="text" id="buscarInput" placeholder="Buscar paciente">
+      <button id="buscar">Buscar</button>
+      <br>
+      <br>
+      <table class="table table-condensed table-hover">
+        <!--Striped es alternar colores de tabla y table-condensed para tablas apretaditasxd -->
+        <tr class="active">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha de nacimiento</th>
+          <th>Estado civil</th>
+          <th>Genero</th>
+          <th>Domicilio</th>
+          <th>Teléfono</th>
+          <th>Celular</th>
 
-        <input type="submit" value="Agregar paciente">
-      </form>
+
+
+          <th>Modificar/Eliminar</th>
+          <th>Mostrar toda la información</th>
+          <th>Mostrar visitas</th>
+
+
+        </tr>
+        <!-- clases succeed info warning y danger son colorsitos -->
+
+
+
+      </table>
     </div>
+
   </div>
 
   <script src="bustras/js/jquery.min.js"></script>
   <script src="bustras/js/bootstrap.js"></script>
+
   <script>
+    const  rutaServer = "http://localhost/slim-json-heroku";
+
+    async function eliminarPorid(id) {
+      const method = {
+        method: 'delete'
+      };
+      const url = rutaServer + `/modulo1/eliminarPorId/${id}`
+      await fetch(url, method);
+
+    }
 
     $(document).ready(function () {
-      $("#addProductForm").submit(function (event) {
-        const url = 'http://localhost/slim-json-heroku/modulo1/agregarPaciente';
-        event.preventDefault();
-        const formData = new FormData($(this)[0]);
-        console.log(formData);
-        $.ajax({
-          url: url,
-          type: 'POST',
-          data: formData,
-          contentType: false,
-          cache: false,
-          processData: false,
-          success: function (returndata) {
-            window.location.href = "http://localhost/slim-json-heroku/vistas/MostrarDatos.html";
-          },
-          error: function () {
-            alert("Hubo un problema al actualizar");
+
+      $('#buscar').click(async (e) => {
+
+        $('.infoPacien').remove();
+
+        const stringBuscar = $('#buscarInput').val().toLowerCase();
+
+        const id = [];
+
+        const result = await fetch(rutaServer + '/modulo1/buscarPaciente');
+        const pacientes = await result.json();
+
+        pacientes.forEach(paciente => {
+
+          if (paciente.allInfo.toLowerCase().search(stringBuscar) != -1) {
+            id.push(paciente.idpaciente);
           }
+
         });
-        return false;
+
+        id.forEach(async (id) => {
+
+          const result = await fetch(rutaServer + `/modulo1/pacientePorId/${id}`);
+          const pacientes = await result.json();
+
+          pacientes.forEach(paciente => {
+
+            const registros = `
+						<tr class="infoPacien ${paciente.idpaciente}">
+							
+							<td >${paciente.idpaciente}</td>
+							<td>${paciente.nombre}</td>
+							<td>${paciente.apellidos}</td>
+							<td>${paciente.fecha_nacimiento}</td>
+							<td>${paciente.estado_civil}</td>
+							<td>${paciente.genero}</td>
+							<td>${paciente.domicilio}</td>
+							<td>${paciente.telefono}</td>
+							<td>${paciente.celular}</td>
+							
+							<td>
+								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
+								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
+							</td>
+							<td>
+								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${paciente.idpaciente}&genero=${paciente.genero}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+						</tr>`;
+
+            $('.table').append(registros);
+
+          });
+        });
+
       });
+
+
+
+      async function todosLospaciente() {
+
+        const result = await fetch(rutaServer + '/modulo1/todosLosPacientes');
+        const pacientes = await result.json();
+
+        pacientes.forEach(paciente => {
+          const registros = `
+						<tr class="infoPacien ${paciente.idpaciente}">
+							
+							<td >${paciente.idpaciente}</td>
+							<td>${paciente.nombre}</td>
+							<td>${paciente.apellidos}</td>
+							<td>${paciente.fecha_nacimiento}</td>
+							<td>${paciente.estado_civil}</td>
+							<td>${paciente.genero}</td>
+							<td>${paciente.domicilio}</td>
+							<td>${paciente.telefono}</td>
+							<td>${paciente.celular}</td>
+							
+							<td>
+								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
+								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
+							</td>
+							<td>
+								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${paciente.idpaciente}&genero=${paciente.genero}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+						</tr>`;
+
+          $('.table').append(registros);
+
+        });
+
+      }
+      todosLospaciente();
+
     });
+
+
+
 
 
   </script>

@@ -19,7 +19,7 @@
 				<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a href="#" class="navbar-brand">Esto no es Dolibarr</a>
+						<a href="#" class="navbar-brand">Health Center Management</a>
 					</div>
 					<div class="collapse navbar-collapse" id="navbar1">
 						<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
@@ -29,16 +29,23 @@
 									<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li>
-										<a href="">Cosa Modulo #1</a>
-									</li>
-									<li>
-										<a href="">Cosa Modulo #2</a>
-									</li>
-									<li role="separator" class="divider"></li>
-									<li>
-										<a href="">Cosa Modulo #4</a>
-									</li>
+										<li>
+												<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
+											</li>
+										<li>
+												<a href="form_pacientes.html">Agregar nuevo paciente</a>
+											  </li>
+											  <li>
+												<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+											  </li>
+							
+											  <li>
+												<a href="form_visitas.html">Agregar visita</a>
+											  </li>
+							
+											  <li>
+												<a href="buscarPaciente.html">Buscar paciente</a>
+											  </li>
 								</ul>
 							</li>
 
@@ -132,13 +139,19 @@
 					<label for="cent_cadera">Centimetros cadera:</label>
 					<input type="text" class="form-control" id="cent_cadera" name="cent_cadera" placeholder="Centimetros de cadera">
 				</div>
+
 				<div class="form-group">
 					<label for="presion_arte">Presion arterial:</label>
-					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial">
+					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial (Alta - Baja)">
 				</div>
 
 				<div class="form-group">
-						<label for="presion_arte">progreso:</label>
+					<label for="idDieta">Id dieta:</label>
+					<input type="text" class="form-control" id="idDieta" name="FK_iddieta_dietas" placeholder="Id dieta">
+				</div>
+
+				<div class="form-group">
+						<label for="presion_arte">Progreso:</label>
 						<input type="text" class="form-control" id="progreso" name="progreso" placeholder="Presion arterial">
 				</div>
 
