@@ -29,23 +29,23 @@
 									<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-										<li>
-												<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
-											</li>
-										<li>
-												<a href="form_pacientes.html">Agregar nuevo paciente</a>
-											  </li>
-											  <li>
-												<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
-											  </li>
-							
-											  <li>
-												<a href="form_visitas.html">Agregar visita</a>
-											  </li>
-							
-											  <li>
-												<a href="buscarPaciente.html">Buscar paciente</a>
-											  </li>
+									<li>
+										<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
+									</li>
+									<li>
+										<a href="form_pacientes.html">Agregar nuevo paciente</a>
+									</li>
+									<li>
+										<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+									</li>
+
+									<li>
+										<a href="form_visitas.html">Agregar visita</a>
+									</li>
+
+									<li>
+										<a href="buscarPaciente.html">Buscar paciente</a>
+									</li>
 								</ul>
 							</li>
 
@@ -145,14 +145,24 @@
 					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial (Alta - Baja)">
 				</div>
 
-				<div class="form-group">
-					<label for="idDieta">Id dieta:</label>
-					<input type="text" class="form-control" id="idDieta" name="FK_iddieta_dietas" placeholder="Id dieta">
-				</div>
+
 
 				<div class="form-group">
-						<label for="presion_arte">Progreso:</label>
-						<input type="text" class="form-control" id="progreso" name="progreso" placeholder="Presion arterial">
+					<label for="option">Id paciente</label>
+					<select class="form-control" id="FK_iddieta_dietas">
+
+					</select>
+				</div>
+
+				<script>
+
+
+
+				</script>
+
+				<div class="form-group">
+					<label for="presion_arte">Progreso:</label>
+					<input type="text" class="form-control" id="progreso" name="progreso" placeholder="Presion arterial">
 				</div>
 
 
@@ -189,21 +199,36 @@
 
 			}
 
+			
+			async function cargarDietas() {
+
+				const result = await fetch('http://localhost/slim-json-heroku/modulo1/idDieta');
+				const dietas = await result.json();
+
+				dietas.forEach(iddietas => {
+					const option = `<option value=${iddietas.iddieta}>${iddietas.iddieta}</option>`;
+					$('#FK_iddieta_dietas').append(option);
+				});
+
+			}
+
+			cargarDietas();
+
 			todosLospaciente();
 
 			$("#addProductForm").submit(function (event) {
 
 				const id = $('#idPaciente').val();
 
-				const url = 'http://localhost/slim-json-heroku/modulo1/agregarVisita/'+id;
+				const url = 'http://localhost/slim-json-heroku/modulo1/agregarVisita/' + id;
 
 
 				event.preventDefault();
 
 
 				const formData = new FormData($(this)[0]);
-				
-				
+
+
 
 
 				$.ajax({

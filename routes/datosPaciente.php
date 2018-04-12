@@ -319,6 +319,26 @@ $app ->get('/modulo1/visitasPorId/{id}', function(Request $req, Response $res){
     }
 });
 
+$app ->get('/modulo1/idDieta', function(Request $req, Response $res){
+    $id = $req->getAttribute('id');
+    $sql = "SELECT iddieta FROM dietas;";
+    try {
+
+        $db = new db();
+        $db = $db -> connect();
+        $stmt = $db -> query($sql);
+        $idDieta = $stmt -> fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        return $res->withJson($idDieta);
+        
+
+    } catch (PDOException $e){
+        echo '{"error": {"text":'.$e->getMessage().'}';
+    }
+});
+
+
+
 //obtenemos los datos para insertarlos
 
 $app ->post('/modulo1/agregarVisita/{idPaciente}', function(Request $req, Response $res){
@@ -412,6 +432,8 @@ $app ->delete('/modulo1/eliminarVisitaPorId/{id}', function(Request $req, Respon
         echo '{"error": {"text":'.$e->getMessage().'}';
     }
 });
+
+
 
 $app -> post ('/modulo1/actualizarPorId/{id}', function(Request $req, Response $res){
 
