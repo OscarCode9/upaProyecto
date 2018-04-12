@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nav bars</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="bustras/css/bootstrap.css">
+  <link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="bustras/css/estilos.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    td {
+      padding: 10px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container contenedor_principal">
+    <br>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
+        <!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
+        <div class="container-fluid">
+          <div class="navbar-header">
+              <a href="#" class="navbar-brand">Health Center Management</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar1">
+            <!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="form_pacientes.html">Agregar nuevo paciente</a>
+                  </li>
+                  <li>
+                    <a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+                  </li>
+
+                  <li>
+                    <a href="form_visitas.html">Agregar visita</a>
+                  </li>
+
+                  <li>
+                    <a href="buscarPaciente.html">Buscar paciente</a>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="">Cosa Modulo #1</a>
+                  </li>
+                  <li>
+                    <a href="">Cosa Modulo #2</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a href="">Cosa Modulo #4</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="">Cosa Modulo #1</a>
+                  </li>
+                  <li>
+                    <a href="">Cosa Modulo #2</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a href="">Cosa Modulo #4</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- terminan bottones -->
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="">Cosa Modulo #1</a>
+                  </li>
+                  <li>
+                    <a href="">Cosa Modulo #2</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="">Cosa Modulo #4</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <input type="text" id="buscarInput" placeholder="Buscar paciente">
+      <button id="buscar">Buscar</button>
+      <br>
+      <br>
+      <table class="table table-condensed table-hover">
+        <!--Striped es alternar colores de tabla y table-condensed para tablas apretaditasxd -->
+        <tr class="active">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha de nacimiento</th>
+          <th>Estado civil</th>
+          <th>Genero</th>
+          <th>Domicilio</th>
+          <th>Teléfono</th>
+          <th>Celular</th>
+
+
+
+          <th>Modificar/Eliminar</th>
+          <th>Mostrar toda la información</th>
+          <th>Mostrar visitas</th>
+
+
+        </tr>
+        <!-- clases succeed info warning y danger son colorsitos -->
+
+
+
+      </table>
+    </div>
+
+  </div>
+
+  <script src="bustras/js/jquery.min.js"></script>
+  <script src="bustras/js/bootstrap.js"></script>
+
+  <script>
+    const  rutaServer = "http://localhost/slim-json-heroku";
+
+    async function eliminarPorid(id) {
+      const method = {
+        method: 'delete'
+      };
+      const url = rutaServer + `/modulo1/eliminarPorId/${id}`
+      await fetch(url, method);
+
+    }
+
+    $(document).ready(function () {
+
+      $('#buscar').click(async (e) => {
+
+        $('.infoPacien').remove();
+
+        const stringBuscar = $('#buscarInput').val().toLowerCase();
+
+        const id = [];
+
+        const result = await fetch(rutaServer + '/modulo1/buscarPaciente');
+        const pacientes = await result.json();
+
+        pacientes.forEach(paciente => {
+
+          if (paciente.allInfo.toLowerCase().search(stringBuscar) != -1) {
+            id.push(paciente.idpaciente);
+          }
+
+        });
+
+        id.forEach(async (id) => {
+
+          const result = await fetch(rutaServer + `/modulo1/pacientePorId/${id}`);
+          const pacientes = await result.json();
+
+          pacientes.forEach(paciente => {
+
+            const registros = `
+						<tr class="infoPacien ${paciente.idpaciente}">
+							
+							<td >${paciente.idpaciente}</td>
+							<td>${paciente.nombre}</td>
+							<td>${paciente.apellidos}</td>
+							<td>${paciente.fecha_nacimiento}</td>
+							<td>${paciente.estado_civil}</td>
+							<td>${paciente.genero}</td>
+							<td>${paciente.domicilio}</td>
+							<td>${paciente.telefono}</td>
+							<td>${paciente.celular}</td>
+							
+							<td>
+								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
+								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
+							</td>
+							<td>
+								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${paciente.idpaciente}&genero=${paciente.genero}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+						</tr>`;
+
+            $('.table').append(registros);
+
+          });
+        });
+
+      });
+
+
+
+      async function todosLospaciente() {
+
+        const result = await fetch(rutaServer + '/modulo1/todosLosPacientes');
+        const pacientes = await result.json();
+
+        pacientes.forEach(paciente => {
+          const registros = `
+						<tr class="infoPacien ${paciente.idpaciente}">
+							
+							<td >${paciente.idpaciente}</td>
+							<td>${paciente.nombre}</td>
+							<td>${paciente.apellidos}</td>
+							<td>${paciente.fecha_nacimiento}</td>
+							<td>${paciente.estado_civil}</td>
+							<td>${paciente.genero}</td>
+							<td>${paciente.domicilio}</td>
+							<td>${paciente.telefono}</td>
+							<td>${paciente.celular}</td>
+							
+							<td>
+								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
+								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
+							</td>
+							<td>
+								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${paciente.idpaciente}&genero=${paciente.genero}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+						</tr>`;
+
+          $('.table').append(registros);
+
+        });
+
+      }
+      todosLospaciente();
+
+    });
+
+
+
+
+
+  </script>
+</body>
+
+</html>

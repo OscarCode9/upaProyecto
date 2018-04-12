@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nav bars</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="bustras/css/bootstrap.css">
+	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="bustras/css/estilos.css">
+</head>
+
+<body>
+	<div class="container contenedor_principal">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+				<!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
+				<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="#" class="navbar-brand">Health Center Management</a>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar1">
+						<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
+									</li>
+									<li>
+										<a href="form_pacientes.html">Agregar nuevo paciente</a>
+									</li>
+									<li>
+										<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+									</li>
+
+									<li>
+										<a href="form_visitas.html">Agregar visita</a>
+									</li>
+
+									<li>
+										<a href="buscarPaciente.html">Buscar paciente</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- terminan bottones -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<form id="addProductForm" enctype="multipart/form-data">
+
+
+				<div class="form-group">
+					<label for="nombre">Fecha:</label>
+					<input type="date" class="form-control" id="fecha" name="fecha">
+				</div>
+				<div class="form-group">
+					<label for="peso">Peso:</label>
+					<input type="text" class="form-control" id="peso" name="peso" placeholder="Peso">
+				</div>
+				<div class="form-group">
+					<label for="talla">Talla:</label>
+					<input type="text" class="form-control" id="talla" name="talla" placeholder="Talla">
+				</div>
+				<div class="form-group">
+					<label for="cent_cintura">Centrimetros cintura:</label>
+					<input type="text" class="form-control" id="cent_cintura" name="cent_cintura" placeholder="Centimetros de cintura">
+				</div>
+				<div class="form-group">
+					<label for="cent_cadera">Centimetros cadera:</label>
+					<input type="text" class="form-control" id="cent_cadera" name="cent_cadera" placeholder="Centimetros de cadera">
+				</div>
+
+				<div class="form-group">
+					<label for="presion_arte">Presion arterial:</label>
+					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial (Alta - Baja)">
+				</div>
+
+				<div class="form-group">
+					<label for="idDieta">Id dieta:</label>
+					<input type="text" class="form-control" id="idDieta" name="FK_iddieta_dietas" placeholder="Id dieta">
+				</div>
+
+				<div class="form-group">
+					<label for="presion_arte">Progreso:</label>
+					<input type="text" class="form-control" id="progreso" name="progreso" placeholder="Presion arterial">
+				</div>
+
+
+				<div class="form-group">
+					<label for="sintomatologia">Sintomatologia:</label>
+					<input type="text" class="form-control" id="sintomatologia" name="sistematologia" placeholder="Sintomatologia">
+				</div>
+				<div class="form-group">
+					<label for="recomendaciones">Recomendaciones:</label>
+					<textarea name="recomendacion" id="recomendaciones" cols="30" rows="10"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="comentarios_gen">Comentarios generales:</label>
+					<textarea name="comentarios_gen" id="comentarios_gen" cols="30" rows="10"></textarea>
+				</div>
+				<input type="submit" value="Agregar Visita">
+			</form>
+		</div>
+	</div>
+	<script src="bustras/js/jquery.min.js"></script>
+	<script src="bustras/js/bootstrap.js"></script>
+	<script>
+
+		$(document).ready(function () {
+
+			function getParameterByName(name, url) {
+				if (!url) url = window.location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+
+			async function cargarVisita() {
+
+				const id = getParameterByName('id');
+
+				const result = await fetch(`http://localhost/slim-json-heroku/modulo1/visitasPorId/${id}`);
+				const paciente = await result.json();
+
+				
+				$('#fecha').val(paciente[0].fecha)
+				$('#peso').val(paciente[0].peso);
+				$('#talla').val(paciente[0].talla);
+				$('#cent_cintura').val(paciente[0].cent_cintura);
+				$('#cent_cadera').val(paciente[0].cent_cadera);
+				$('#presion_arte').val(paciente[0].presion_arte);
+				$('#idDieta').val(paciente[0].FK_iddieta_dietas);
+				$('#progreso').val(paciente[0].progreso);
+				$('#sintomatologia').val(paciente[0].sintomatologia);
+				$('#recomendaciones').val(paciente[0].recomendaciones);
+				$('#comentarios_gen').val(paciente[0].comentarios_gen);
+
+			}
+
+			cargarVisita();
+
+
+
+
+
+
+
+
+
+
+
+			$("#addProductForm").submit(function (event) {
+
+				const id = getParameterByName('id');
+
+				const url = 'http://localhost/slim-json-heroku/modulo1/actualizarPorId/' + id;
+
+
+				event.preventDefault();
+
+
+				const formData = new FormData($(this)[0]);
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function (returndata) {
+						window.location.href = "http://localhost/slim-json-heroku/vistas/MostrarDatos.html";
+					},
+					error: function () {
+						alert("Hubo un problema al actualizar");
+					}
+				});
+
+				return false;
+
+			});
+
+		});
+
+
+	</script>
+</body>
+
+</html>

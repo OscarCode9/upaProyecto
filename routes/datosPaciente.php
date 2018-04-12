@@ -301,6 +301,24 @@ $app ->get('/modulo1/visitasPorPaciente/{id}', function(Request $req, Response $
     }
 });
 
+$app ->get('/modulo1/visitasPorId/{id}', function(Request $req, Response $res){
+    $id = $req->getAttribute('id');
+    $sql = "select * from visitas WHERE idvisita = $id";
+    try {
+
+        $db = new db();
+        $db = $db -> connect();
+        $stmt = $db -> query($sql);
+        $Visitas = $stmt -> fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        return $res->withJson($Visitas);
+        
+
+    } catch (PDOException $e){
+        echo '{"error": {"text":'.$e->getMessage().'}';
+    }
+});
+
 //obtenemos los datos para insertarlos
 
 $app ->post('/modulo1/agregarVisita/{idPaciente}', function(Request $req, Response $res){
@@ -393,4 +411,77 @@ $app ->delete('/modulo1/eliminarVisitaPorId/{id}', function(Request $req, Respon
     } catch (PDOException $e){
         echo '{"error": {"text":'.$e->getMessage().'}';
     }
+});
+
+$app -> post ('/modulo1/actualizarPorId/{id}', function(Request $req, Response $res){
+
+    $id = $req->getAttribute('id');
+
+    
+    
+    $fecha = $req -> getParam('fecha');
+    $peso = (float)$req -> getParam('peso');
+    $talla = (float)$req -> getParam('talla');
+    $cent_cintura = (float)$req -> getParam('cent_cintura');
+    $cent_cadera =(float)$req -> getParam('cent_cadera');
+    $presion_arte =$req -> getParam('presion_arte');
+    $imc = $peso / pow(2, $talla); 
+    $icc = $cent_cintura / $cent_cadera;
+    $sistematologia =$req -> getParam('sistematologia');
+    $recomendacion =$req -> getParam('recomendacion');
+    $progreso =$req -> getParam('progreso');
+    $comentarios_gen =$req -> getParam('comentarios_gen');
+    $FK_iddieta_dietas = (int)$req -> getParam('FK_iddieta_dietas');
+
+    $sql = "UPDATE `visitas`
+                SET
+                `fecha` = :x1,
+                `peso` = :x2,
+                `talla` = :x3,
+                `cent_cintura` = :x4,
+                `cent_cadera` = :x5,
+                `presion_arte` = :x6,
+                `imc` = :x7,
+                `icc` = :x8,
+                `sintomatologia` = :x9,
+                `recomendaciones` = :x10,
+                `progreso` = :x11,
+                `comentarios_gen` = :x12,
+                `FK_iddieta_dietas` = :x13
+            WHERE `idvisita` = $id";
+
+    try {
+        $db = new db();
+        $db = $db ->connect();
+
+        $stmt = $db -> prepare($sql);
+
+
+        $stmt -> bindParam(':x1',$fecha);
+        $stmt -> bindParam(':x2',$peso);
+        $stmt -> bindParam(':x3',$talla);
+        $stmt -> bindParam(':x4',$cent_cintura);
+        $stmt -> bindParam(':x5',$cent_cadera);
+        $stmt -> bindParam(':x6',$presion_arte);
+        $stmt -> bindParam(':x7',$imc);
+        $stmt -> bindParam(':x8',$icc);
+        $stmt -> bindParam(':x9',$sistematologia);
+        $stmt -> bindParam(':x10',$recomendacion);
+        $stmt -> bindParam(':x11',$progreso);
+        $stmt -> bindParam(':x12',$comentarios_gen);
+        $stmt -> bindParam(':x13',$FK_iddieta_dietas);
+        
+        
+        
+
+        $stmt -> execute();
+        return $res->withJson('{"notice": {"text": "Visita actualizar"}');
+        
+        
+
+    } catch (PDOException $e){
+        echo '{"error": {"text":'.$e->getMessage().'}';
+    }
+    
+
 });

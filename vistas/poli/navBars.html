@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nav bars</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="bustras/css/bootstrap.css">
+	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="bustras/css/estilos.css">
+</head>
+<body>
+	<div class="container contenedor_principal">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+			<!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
+			<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="#" class="navbar-brand">Esto no es Dolibarr</a>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar1">
+					<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="">Cosa Modulo #1</a></li>
+									<li><a href="">Cosa Modulo #2</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="">Cosa Modulo #4</a></li>
+								</ul>
+							</li>
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="">Cosa Modulo #1</a></li>
+									<li><a href="">Cosa Modulo #2</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="">Cosa Modulo #4</a></li>
+								</ul>
+							</li>
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="">Cosa Modulo #1</a></li>
+									<li><a href="">Cosa Modulo #2</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="">Cosa Modulo #4</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!-- terminan bottones -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="">Cosa Modulo #1</a></li>
+									<li><a href="">Cosa Modulo #2</a></li>
+									<li class="divider"></li>
+									<li><a href="">Cosa Modulo #4</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<form>
+				<div class="form-group">
+					<label for="nombre">Nombre:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="nombre" placeholder="Nombre:">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Apellidos:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="apellidos" placeholder="Apellidos:">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Fecha de nacimiento:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="date" class="form-control" id="fecha_nacimiento">
+				</div>
+				<div class="form-group">
+					<label for="option">Estado civil:</label>
+					<select class="form-control" name="" id="estado_civil">
+						<option value="">Casado(a)</option>
+						<option value="">Soltero(a)</option>
+						<option value="">Divorciado(a)</option>
+						<option value="">Viudo(a)</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="option">Genero:</label>
+					<select class="form-control" name="" id="genero">
+						<option value="">Masculino</option>
+						<option value="">Femenino</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="nombre">Domicilio:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="Domicilio">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Telefono:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="telefono">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Celular:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="celular">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Email:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="email">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Ocupación:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="text" class="form-control" id="ocupacion">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Fecha de registro:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<input type="date" class="form-control" id="fecha_registro">
+				</div>
+				<div class="form-group">
+					<label for="nombre">Enfermedades heredas:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<textarea name="enfs_here" id="enfs_here" cols="30" rows="10"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="nombre">Antecedentes no patológicos:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<textarea name="ant_no_pat" id="ant_no_pat" cols="30" rows="10"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="nombre">Antecedentes perinatales:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<textarea name="ant_peri" id="ant_peri" cols="30" rows="10"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="nombre">Antecedentes gineco-obstétricos (sólo para mujeres):</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<textarea name="ant_gine" id="ant_gine" cols="30" rows="10"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="nombre">Antecedentes patológicos:</label>
+					<!-- atributo for se aplica para los id con mismo nombre del for -->
+					<textarea name="ant_pat" id="ant_pat" cols="30" rows="10"></textarea>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../bustras/js/jquery.min.js"></script>
+	<script src="../bustras/js/bootstrap.js"></script>
+</body>
+</html>

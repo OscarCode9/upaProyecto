@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="bustras/css/bootstrap.css">
+	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
+	<link rel="stylesheet" href="bustras/css/estilos.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+	<title>Document</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
+		<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">Health Center Management</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar1">
+				<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
+							</li>
+							<li>
+								<a href="form_pacientes.html">Agregar nuevo paciente</a>
+							</li>
+							<li>
+								<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+							</li>
+
+							<li>
+								<a href="form_visitas.html">Agregar visita</a>
+							</li>
+
+							<li>
+								<a href="buscarPaciente.html">Buscar paciente</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="">Cosa Modulo #1</a>
+							</li>
+							<li>
+								<a href="">Cosa Modulo #2</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="">Cosa Modulo #4</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="">Cosa Modulo #1</a>
+							</li>
+							<li>
+								<a href="">Cosa Modulo #2</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="">Cosa Modulo #4</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<!-- terminan bottones -->
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="">Cosa Modulo #1</a>
+							</li>
+							<li>
+								<a href="">Cosa Modulo #2</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="">Cosa Modulo #4</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="carousel carousel-slider">
+		<a class="carousel-item" href="#one!">
+			<img src="doc1.jpg">
+		</a>
+		<a class="carousel-item" href="#two!">
+			<img src="doc2.jpg">
+		</a>
+		<a class="carousel-item" href="#three!">
+			<img src="doc3.jpg">
+		</a>
+		<a class="carousel-item" href="#four!">
+			<img src="doc4.jpg">
+		</a>
+	</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+<script>
+	$('.carousel.carousel-slider').carousel({
+		width: '70%'
+		
+	});
+</script>
+
+<script src="bustras/js/jquery.min.js"></script>
+<script src="bustras/js/bootstrap.js"></script>
+
+</html>
