@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Nav bars</title>
+	<title>Editar vista</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="bustras/css/bootstrap.css">
 	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
@@ -112,13 +112,7 @@
 		</header>
 		<div class="container">
 			<form id="addProductForm" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="option">Id paciente</label>
-					<select class="form-control" id="idPaciente">
 
-
-					</select>
-				</div>
 
 				<div class="form-group">
 					<label for="nombre">Fecha:</label>
@@ -146,20 +140,10 @@
 					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial (Alta - Baja)">
 				</div>
 
-
-
 				<div class="form-group">
-					<label for="option">Id paciente</label>
-					<select class="form-control" id="FK_iddieta_dietas">
-
-					</select>
+					<label for="idDieta">Id dieta:</label>
+					<input type="text" class="form-control" id="idDieta" name="FK_iddieta_dietas" placeholder="Id dieta">
 				</div>
-
-				<script>
-
-
-
-				</script>
 
 				<div class="form-group">
 					<label for="presion_arte">Progreso:</label>
@@ -188,49 +172,62 @@
 	<script>
 
 		$(document).ready(function () {
-			async function todosLospaciente() {
 
-				const result = await fetch('http://localhost/slim-json-heroku/modulo1/todosLosPacientes');
-				const pacientes = await result.json();
+			function getParameterByName(name, url) {
+				if (!url) url = window.location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
 
-				pacientes.forEach(paciente => {
-					const option = `<option value=${paciente.idpaciente}>${paciente.idpaciente}</option>`;
-					$('#idPaciente').append(option);
-				});
+			async function cargarVisita() {
+
+				const id = getParameterByName('id');
+
+				const result = await fetch(`http://localhost/slim-json-heroku/modulo1/visitasPorId/${id}`);
+				const paciente = await result.json();
+
+				
+				$('#fecha').val(paciente[0].fecha)
+				$('#peso').val(paciente[0].peso);
+				$('#talla').val(paciente[0].talla);
+				$('#cent_cintura').val(paciente[0].cent_cintura);
+				$('#cent_cadera').val(paciente[0].cent_cadera);
+				$('#presion_arte').val(paciente[0].presion_arte);
+				$('#idDieta').val(paciente[0].FK_iddieta_dietas);
+				$('#progreso').val(paciente[0].progreso);
+				$('#sintomatologia').val(paciente[0].sintomatologia);
+				$('#recomendaciones').val(paciente[0].recomendaciones);
+				$('#comentarios_gen').val(paciente[0].comentarios_gen);
 
 			}
 
+			cargarVisita();
 
-			async function cargarDietas() {
 
-				const result = await fetch('http://localhost/slim-json-heroku/modulo1/idDieta');
-				const dietas = await result.json();
 
-				dietas.forEach(iddietas => {
-					const option = `<option value=${iddietas.iddieta}>${iddietas.iddieta}</option>`;
-					$('#FK_iddieta_dietas').append(option);
-				});
 
-			}
 
-			cargarDietas();
 
-			todosLospaciente();
+
+
+
+
 
 			$("#addProductForm").submit(function (event) {
 
-				const id = $('#idPaciente').val();
+				const id = getParameterByName('id');
 
-				const url = 'http://localhost/slim-json-heroku/modulo1/agregarVisita/' + id;
+				const url = 'http://localhost/slim-json-heroku/modulo1/actualizarPorId/' + id;
 
 
 				event.preventDefault();
 
 
 				const formData = new FormData($(this)[0]);
-
-
-
 
 				$.ajax({
 					url: url,

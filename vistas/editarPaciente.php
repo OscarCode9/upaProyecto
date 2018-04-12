@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Nav bars</title>
+	<title>Editar paciente</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="bustras/css/bootstrap.css">
 	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
@@ -33,22 +33,21 @@
 								<ul class="dropdown-menu">
 										<li>
 												<a href="http://localhost/slim-json-heroku/vistas/index.html">Inicio</a>
+											</li>
+										<li>
+												<a href="form_pacientes.html">Agregar nuevo paciente</a>
 											  </li>
-											  
-										  <li>
-											<a href="form_pacientes.html">Agregar nuevo paciente</a>
-										  </li>
-										  <li>
-											<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
-										  </li>
-						
-										  <li>
-											<a href="form_visitas.html">Agregar visita</a>
-										  </li>
-						
-										  <li>
-											<a href="buscarPaciente.html">Buscar paciente</a>
-										  </li>
+											  <li>
+												<a href="MostrarDatos.html">Mostrar todos los pacientes</a>
+											  </li>
+							
+											  <li>
+												<a href="form_visitas.html">Agregar visita</a>
+											  </li>
+							
+											  <li>
+												<a href="buscarPaciente.html">Buscar paciente</a>
+											  </li>
 								</ul>
 							</li>
 
@@ -57,7 +56,16 @@
 									<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-										
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
 								</ul>
 							</li>
 
@@ -110,22 +118,23 @@
 					<!--Striped es alternar colores de tabla y table-condensed para tablas apretaditasxd -->
 					<tr class="active">
 						<th>ID</th>
-					
-					<th>Fecha</th>
-					<th>Peso</th>
-					<th>Talla</th>
-					<th>Cm. Cintura</th>
-					<th>Cm. Cadera</th>
-					<th>Presion Arterial</th>
-					<th>IMC</th>
-					<th>ICC</th>
-					<th>Sintomatologia</th>
-					<th>Recomendaciones</th>
-                    <th>Progreso</th>
-					<th>Comentarios</th>
-				    <th>Tipo de Dieta</th>
-					<th>Modificar/Eliminar</th>
-					<th>Mostrar toda la información</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Fecha de nacimiento</th>
+						<th>Estado civil</th>
+						<th>Genero</th>
+						<th>Domicilio</th>
+						<th>Teléfono</th>
+						<th>Celular</th>
+						<th>Email</th>
+						<th>Ocupación</th>
+						<th>Fecha registro</th>
+						<th>Enfs here</th>
+						<th>Ant no pat</th>
+						<th>Ant peri</th>
+						<th>Ant gine</th>
+						<th>Ant pat</th>
+
 
 					</tr>
 
@@ -134,9 +143,6 @@
 				<input type="submit" value="Enviar datos" />
 
 			</form>
-
-
-			<button id="actualizarDatos">Actualizar datos</button>
 
 		</div>
 
@@ -169,33 +175,38 @@
 		$(document).ready(function () {
 
 
-			async function todasLasVisitas() {
+			async function todosLospaciente() {
 
-				const id = getParameterByName('id');
+				const id = getParameterByName('idPaciente');
 				console.log(id);
 
 
 				const result = await fetch(`http://localhost/slim-json-heroku/modulo1/pacientePorId/${id}`);
-				const visitas = await result.json();
+				const pacientes = await result.json();
 
-					visitas.forEach(visita => {
+				pacientes.forEach(paciente => {
 					const registros = `
-						<tr id="${visita.idvisita}">
+						<tr id="${paciente.idpaciente}">
+							
+							<td ><input value="${paciente.idpaciente}" style="width: 20px;" type="text" name="idpaciente" id="idpaciente"></td>
+							<td ><input value="${paciente.nombre}" style="width: 80px;" type="text" name="nombre" id="nombre"></td>
+							<td ><input value="${paciente.apellidos}" style="width: 80px;" type="text" id="apellidos" name="apellidos"></td>
+							<td ><input value="${paciente.fecha_nacimiento}" style="width: 80px;" type="text" id="fecha_nacimiento" name="fecha_nacimiento"></td>
+							<td ><input value="${paciente.estado_civil}" style="width: 80px;" type="text" id="estado_civil" name="estado_civil"></td>
+							<td ><input value="${paciente.genero}" style="width: 80px;" type="text" id="genero" name="genero"></td>
 
-							<tr id="${visita.idvisita}" style="width: 20px;" type="text" name="idvisita" id="idvisita"></td>>
-							<td>${visita.idvisita}" style="width: 80px;" type="text" ></td>
-							<td>${visita.fecha}" style="width: 80px;" type="text" name="fecha" id="fecha"></td>
-							<td>${visita.peso}" style="width: 80px;" type="text" name="peso" id="peso"></td>
-							<td>${visita.talla}" style="width: 80px;" type="text" name="talla" id="talla"></td>
-							<td>${visita.cent_cintura}" style="width: 80px;" type="text" name="cent_cintura" id="cent_cintura"></td>
-							<td>${visita.cent_cadera}" style="width: 80px;" type="text" name="cent_cadera" id="cent_cadera"></td>
-							<td>${visita.presion_arte}" style="width: 80px;" type="text" name="presion_arte id="presion_artea"></td>
-							<td>${visita.imc}" style="width: 80px;" type="text" name="imc" id="imc"></td>
-							<td>${visita.icc}" style="width: 80px;" type="text" name="icc" id="icc"></td>
-							<td>${visita.sintomatologia}" style="width: 80px;" type="text" name="sintomatologia" id="sintomatologia"></td>
-							<td>${visita.recomendaciones}" style="width: 80px;" type="text" name="recomendaciones" id="recomendaciones"></td>
-							<td>${visita.progreso}" style="width: 80px;" type="text" name="progreso" id="progreso"></td>
-							<td>${visita.comentarios_gen}" style="width: 80px;" type="text" name="comentarios_gen" id="comentarios_gen"></td>
+							<td ><input value="${paciente.domicilio}" style="width: 80px;" type="text" id="domicilio" name="domicilio"></td>
+							<td ><input value="${paciente.telefono}" style="width: 80px;" type="text" id="telefono" name="telefono"></td>
+							<td ><input value="${paciente.celular}" style="width: 80px;" type="text" id="celular" name="celular"></td>
+							<td ><input value="${paciente.email}" style="width: 80px;" type="text" id="email" name="email"></td>
+							<td ><input value="${paciente['ocupación']}" style="width: 80px;" type="text" id="ocupacion" name="ocupacion"></td>
+							<td ><input value="${paciente.fecha_registro}" style="width: 80px;" type="text" id="fecha_registro" name="fecha_registro"></td>
+							<td ><input value="${paciente.enfs_here}" style="width: 40px;" type="text" id="enfs_here" name="enfs_here"></td>
+							<td ><input value="${paciente.ant_no_pat}" style="width: 40px;" type="text" id="ant_no_pat" name="ant_no_pat"></td>
+							<td ><input value="${paciente.ant_peri}" style="width: 40px;" type="text" id="ant_peri" name="ant_peri"></td>
+							<td ><input value="${paciente.ant_gine}" style="width: 40px;" type="text" id="ant_gine" name="ant_gine"></td>
+							<td ><input value="${paciente.ant_pat}" style="width: 40px;" type="text" id="ant_pat" name="ant_pat"></td>
+
 						</tr>`;
 
 					$('.table').append(registros);
@@ -299,7 +310,7 @@
 
 
 			})
-			todasLasVisitas();
+			todosLospaciente();
 
 
 

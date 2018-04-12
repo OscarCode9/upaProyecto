@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Nav bars</title>
+  <title>Mostrar visita</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="bustras/css/bootstrap.css">
   <link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
@@ -306,7 +306,7 @@
 				
 							<td>
 								<a href="" onclick="eliminarPorid(${visita.idvisita})" class="btn btn-danger">Eliminar</a>
-                <a href="editarVisita2.html?id=${visita.idvisita}" class="btn btn-primary">Editar</a>
+                <a href="editarVisita2.php?id=${visita.idvisita}" class="btn btn-primary">Editar</a>
 							</td>
 						</tr>`;
 
