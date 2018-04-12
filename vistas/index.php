@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="bustras/css/bootstrap.css">
 	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
 	<link rel="stylesheet" href="bustras/css/estilos.css">
+	<link rel=icon href='img/logo-icon.png' sizes="32x32" type="image/png">
     <!-- Compiled and minified Bootstrap CSS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Compiled and minified Bootstrap JavaScript -->
